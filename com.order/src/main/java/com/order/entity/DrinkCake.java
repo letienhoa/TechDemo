@@ -28,7 +28,7 @@ public class DrinkCake extends BaseEntity {
 	@Column(name = "price")
 	private Integer price;
 	@Column(name = "picture")
-	private byte[] picture;
+	private String picture;
 	
 	public int getId() {
 		return id;
@@ -50,10 +50,10 @@ public class DrinkCake extends BaseEntity {
 	}
 	
 	
-	public byte[] getPicture() {
+	public String getPicture() {
 		return picture;
 	}
-	public void setPicture(byte[] picture) {
+	public void setPicture(String picture) {
 		this.picture = picture;
 	}
 	public DrinkCake() {

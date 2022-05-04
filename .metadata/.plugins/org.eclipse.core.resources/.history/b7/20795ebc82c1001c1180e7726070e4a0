@@ -1,0 +1,18 @@
+package com.order.util;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.order.config.JwtService;
+import com.order.entity.Employee;
+
+@Service
+public class AuthenticationService {
+
+	@Autowired
+	JwtService jwtService;
+	
+	public static Employee getUserNameToken(String token) {
+		String userName = JwtService
+		
+	} 
+}

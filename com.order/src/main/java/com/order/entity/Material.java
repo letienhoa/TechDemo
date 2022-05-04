@@ -18,11 +18,11 @@ public class Material extends BaseEntity{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
-	@Column(name = "name" , columnDefinition = "nvarchar")
+	@Column(name = "name" )
 	private String name;
 	@Column(name = "type")
 	private int type;
-	@Column(name = "quality" , columnDefinition = "nvarchar")
+	@Column(name = "quality")
 	private String quality;
 	@Column(name = "amountTotal")
 	private Integer amount;

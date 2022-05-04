@@ -18,4 +18,6 @@ public interface MaterialService {
 	boolean deleteMaterial(Integer id);
 	
 	boolean updateAmount(RecipeRequest request);
+	
+	Material getBigMaterial();
 }

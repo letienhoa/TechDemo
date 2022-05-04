@@ -1,0 +1,10 @@
+package com.order.util;
+
+import com.order.entity.Employee;
+
+public class AuthenticationService {
+
+	public static Employee getUserNameToken() {
+		
+	} 
+}

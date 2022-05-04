@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -18,18 +19,18 @@ import com.order.request.RecipeRequest;
 import com.order.service.MaterialService;
 
 @Service
-public class MaterialServiceImpl implements MaterialService{
+public class MaterialServiceImpl implements MaterialService {
 
 	@Autowired
 	private MaterialRepository materialRepository;
-	
+
 	@Autowired
 	private RecipeRepository recipeRepository;
-	
+
 	@Override
 	public Material findById(int id) {
 		Optional<Material> material = materialRepository.findById(id);
-		return material.isPresent()?material.get():null;
+		return material.isPresent() ? material.get() : null;
 	}
 
 	@Override
@@ -49,9 +50,9 @@ public class MaterialServiceImpl implements MaterialService{
 	}
 
 	@Override
-	public boolean updateMaterial(int id,MaterialRequest request) {
+	public boolean updateMaterial(int id, MaterialRequest request) {
 		Material material = materialRepository.findById(id).get();
-		if(material!=null) {
+		if (material != null) {
 			try {
 				material.setName(request.getName());
 				material.setQuality(request.getQuality());
@@ -62,18 +63,17 @@ public class MaterialServiceImpl implements MaterialService{
 				materialRepository.save(material);
 			} catch (Exception e) {
 				return false;
-			}	
+			}
 		}
 		return true;
 	}
-	
+
 	@Override
 	public boolean deleteMaterial(Integer id) {
 		try {
 			materialRepository.deleteById(id);
 			return true;
-		}
-		catch(EmptyResultDataAccessException e) {
+		} catch (EmptyResultDataAccessException e) {
 			return false;
 		}
 	}
@@ -82,10 +82,10 @@ public class MaterialServiceImpl implements MaterialService{
 	public boolean updateAmount(RecipeRequest request) {
 		List<Recipe> recipes = recipeRepository.findByDrinkCake(request.getFoodId());
 		try {
-			for(Recipe recipe : recipes) {
+			for (Recipe recipe : recipes) {
 				Material material = materialRepository.findById(recipe.getMaterial()).get();
 				int amount = material.getAmount();
-				amount -=request.getSize().equals("M")?request.getAmountForOne():request.getAmountForOne()*2;
+				amount -= request.getSize().equals("M") ? request.getAmountForOne() : request.getAmountForOne() * 2;
 				material.setAmount(amount);
 				material.setUpdateBy(request.getUpdatedBy());
 				materialRepository.save(material);
@@ -94,6 +94,25 @@ public class MaterialServiceImpl implements MaterialService{
 		} catch (Exception e) {
 			return false;
 		}
+	}
+
+	@Override
+	@Cacheable("material")
+	public Material getBigMaterial() {
+		return doSlow();
+	}
+
+	private Material doSlow() {
+		Material m = new Material();
+		try {
+			Thread.sleep(2000L);
+			m.setName("TechMaterial");
+			return m;
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		m.setType(2);
+		return m;
 	}
 
 }

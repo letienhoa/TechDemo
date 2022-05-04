@@ -1,5 +1,9 @@
 package com.order.request;
 
+import javax.persistence.Column;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class DrinkCakeRequest {
@@ -11,6 +15,9 @@ public class DrinkCakeRequest {
 	
 	@JsonProperty("price")
 	private Integer price;
+	
+	@Column(name = "picture")
+	private MultipartFile picture;
 	
 	@JsonProperty("createdBy")
 	private Integer createdBy;
@@ -48,5 +55,12 @@ public class DrinkCakeRequest {
 	public void setUpdatedBy(Integer updatedBy) {
 		this.updatedBy = updatedBy;
 	}
+	public MultipartFile getPicture() {
+		return picture;
+	}
+	public void setPicture(MultipartFile picture) {
+		this.picture = picture;
+	}
+	
 	
 }

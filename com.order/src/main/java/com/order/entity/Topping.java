@@ -20,7 +20,7 @@ public class Topping extends BaseEntity{
 	@Column(name = "price")
 	private Integer price;
 	@Column(name = "picture")
-	private byte[] picture;
+	private String picture;
 	
 	
 	public int getId() {
@@ -41,10 +41,10 @@ public class Topping extends BaseEntity{
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
-	public byte[] getPicture() {
+	public String getPicture() {
 		return picture;
 	}
-	public void setPicture(byte[] picture) {
+	public void setPicture(String picture) {
 		this.picture = picture;
 	}
 

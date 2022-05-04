@@ -1,8 +1,0 @@
-package com.order.util;
-
-public class AuthenticationService {
-
-	public static Integer getUserNameToken() {
-		
-	} 
-}

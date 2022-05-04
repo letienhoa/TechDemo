@@ -1,5 +1,0 @@
-package com.order.request;
-
-public class VoucherRequest {
-
-}

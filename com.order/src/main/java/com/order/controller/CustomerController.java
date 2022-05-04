@@ -18,7 +18,8 @@ import com.order.service.CustomerService;
 @RestController
 @RequestMapping("api/customer")
 public class CustomerController {
-	
+	  
+	  
 	@Autowired
 	private CustomerService customerService;
 
